@@ -54,6 +54,21 @@ class ArrayUnitTest {
                 Arguments.of(arrayOf(1), -1)
             )
         }
+
+        @ParameterizedTest
+        @CsvSource(
+            "test, e",
+            "aaa, _",
+            "abba, _",
+            "z, z"
+        )
+        fun `Given a string, Then get the first not repeating character`(string: String, expected: Char) {
+            val arrayInterviewQuestions = ArrayInterviewQuestions()
+            val result = arrayInterviewQuestions.firstNotRepeatingCharacter(string)
+
+            assertEquals(expected, result)
+        }
+
     }
 }
 
