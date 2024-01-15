@@ -1,4 +1,5 @@
-package com.github.rccorreia
+package com.github.rccorreia.unit
+import com.github.rccorreia.Calculator
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
