@@ -92,4 +92,54 @@ class ArrayInterviewQuestions{
     fun firstNotRepeatingCharacter(s: String) =
         s.groupingBy { it }.eachCount()
             .filter { it.value == 1 }.toList().firstOrNull()?.first ?: '_'
+
+
+//    You are given an n x n 2D matrix that represents an image. Rotate the image by 90 degrees (clockwise).
+//
+//    Example
+//
+//    For
+//
+//    a = [[1, 2, 3],
+//    [4, 5, 6],
+//    [7, 8, 9]]
+//    the output should be
+//
+//    solution(a) =
+//    [[7, 4, 1],
+//    [8, 5, 2],
+//    [9, 6, 3]]
+//    Input/Output
+//
+//    [execution time limit] 3 seconds (kt)
+//
+//    [memory limit] 1 GB
+//
+//    [input] array.array.integer a
+//
+//    Guaranteed constraints:
+//    1 ≤ a.length ≤ 100,
+//    a[i].length = a.length,
+//    1 ≤ a[i][j] ≤ 104.
+//
+//    [output] array.array.integer
+
+    //Remember:
+    // Rotate + 90º -> Transpose + Reverse row
+    // Rotate - 90º -> Reverse row + Transpose
+
+    fun rotateImage(a: Array<Array<Int>>): Array<Array<Int>> {
+        var helper: Int
+
+        for (rowIndex in a.indices){
+            for (columnIndex in rowIndex+1 until a[0].size){
+                helper = a[rowIndex][columnIndex]
+                a[rowIndex][columnIndex] = a[columnIndex][rowIndex]
+                a[columnIndex][rowIndex] = helper
+            }
+        }
+
+        a.map { it.reverse() }
+        return a
+    }
 }

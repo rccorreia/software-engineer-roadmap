@@ -69,6 +69,26 @@ class ArrayUnitTest {
             assertEquals(expected, result)
         }
 
+        @ParameterizedTest(name = "for {0} the return is {1}")
+        @MethodSource("arrayOfArrayIntAndArrayOfArrayIntProvider")
+        fun `Given an int array as image, Then get the rotated image in 90 degrees`(array: Array<Array<Int>>, expected: Array<Array<Int>> ) {
+            val arrayInterviewQuestions = ArrayInterviewQuestions()
+            val result = arrayInterviewQuestions.rotateImage(array)
+
+            assertArrayEquals(expected, result)
+        }
+
+        private fun arrayOfArrayIntAndArrayOfArrayIntProvider(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7, 8, 9)),
+                    arrayOf(arrayOf(7, 4, 1), arrayOf(8, 5, 2), arrayOf(9, 6, 3))),
+                Arguments.of(arrayOf(arrayOf(1)),
+                    arrayOf(arrayOf(1))),
+                Arguments.of(arrayOf(arrayOf(10, 9, 6, 3, 7), arrayOf(6, 10, 2, 9, 7), arrayOf(7, 6, 3, 8, 2),
+                    arrayOf(8, 9, 7, 9, 9), arrayOf(6, 8, 6, 8, 2)),
+                    arrayOf(arrayOf(6, 8, 7, 6, 10), arrayOf(8, 9, 6, 10, 9), arrayOf(6, 7, 3, 2, 6),
+                        arrayOf(8, 9, 8, 9, 3), arrayOf(2, 9, 2, 7, 7)))
+            )
+        }
     }
 }
-
