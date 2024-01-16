@@ -91,57 +91,6 @@ class ArrayUnitTest {
             )
         }
 
-        @ParameterizedTest(name = "for {0} the return is {1}")
-        @MethodSource("listOfListCharAndBooleanProvider")
-        fun `Given an char array of array as sudoku game, Then get validation of the game`(list: List<List<Char>>, expected: Boolean ) {
-            val arrayInterviewQuestions = ArrayInterviewQuestions()
-            val result = arrayInterviewQuestions.sudoku2(list)
-
-            assertEquals(expected, result)
-        }
-
-        private fun listOfListCharAndBooleanProvider(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(listOf(listOf('.', '.', '.', '1', '4', '.', '.', '2', '.'),
-                    listOf('.', '.', '6', '.', '.', '.', '.', '.', '.'),
-                    listOf('.', '.', '.', '.', '.', '.', '.', '.', '.'),
-                    listOf('.', '.', '1', '.', '.', '.', '.', '.', '.'),
-                    listOf('.', '6', '7', '.', '.', '.', '.', '.', '9'),
-                    listOf('.', '.', '.', '.', '.', '.', '8', '1', '.'),
-                    listOf('.', '3', '.', '.', '.', '.', '.', '.', '6'),
-                    listOf('.', '.', '.', '.', '.', '7', '.', '.', '.'),
-                    listOf('.', '.', '.', '5', '.', '.', '.', '7', '.')), true),
-                Arguments.of(listOf(listOf('.', '.', '.', '.', '2', '.', '.', '9', '.'),
-                    listOf('.', '.', '.', '.', '6', '.', '.', '.', '.'),
-                    listOf('7', '1', '.', '.', '7', '5', '.', '.', '.'),
-                    listOf('.', '7', '.', '.', '.', '.', '.', '.', '.'),
-                    listOf('.', '.', '.', '.', '8', '3', '.', '.', '.'),
-                    listOf('.', '.', '8', '.', '.', '7', '.', '6', '.'),
-                    listOf('.', '.', '.', '.', '.', '1', '.', '.', '.'),
-                    listOf('.', '3', '.', '9', '.', '.', '.', '.', '.'),
-                    listOf('.', '2', '.', '.', '3', '.', '.', '7', '.')), false),
-                Arguments.of(listOf(listOf('.', '.', '.', '.', '2', '.', '.', '9', '.'),
-                    listOf('.', '.', '.', '.', '6', '.', '.', '.', '.'),
-                    listOf('7', '1', '.', '.', '8', '5', '.', '.', '.'),
-                    listOf('.', '7', '.', '.', '.', '.', '.', '.', '.'),
-                    listOf('.', '.', '.', '.', '8', '3', '.', '.', '.'),
-                    listOf('.', '.', '8', '.', '.', '7', '.', '6', '.'),
-                    listOf('.', '.', '.', '.', '.', '1', '.', '.', '.'),
-                    listOf('.', '3', '.', '9', '.', '.', '.', '.', '.'),
-                    listOf('.', '2', '.', '.', '3', '.', '.', '7', '.')), false),
-                Arguments.of(listOf(listOf('.', '.', '.', '.', '2', '.', '.', '9', '.'),
-                    listOf('.', '.', '.', '.', '6', '.', '.', '.', '.'),
-                    listOf('7', '1', '.', '.', '8', '5', '.', '.', '.'),
-                    listOf('.', '7', '.', '.', '.', '.', '.', '.', '.'),
-                    listOf('.', '.', '.', '.', '5', '3', '.', '.', '.'),
-                    listOf('.', '.', '8', '.', '.', '7', '.', '6', '.'),
-                    listOf('.', '.', '.', '.', '.', '1', '.', '.', '.'),
-                    listOf('.', '3', '2', '9', '.', '.', '.', '.', '.'),
-                    listOf('.', '2', '.', '.', '3', '.', '.', '7', '.')), false)
-            )
-        }
-
-
         @ParameterizedTest(name = "for {0} and {1} the return is {2}")
         @MethodSource("arrayOfStringAndArrayOfArrayOfCharAndBooleanProvider")
         fun `Given an string array as crypt and an char array of array, Then get validation of the solution`(crypt: Array<String>,

@@ -143,67 +143,6 @@ class ArrayInterviewQuestions{
         return a
     }
 
-//    Sudoku is a number-placement puzzle. The objective is to fill a 9 × 9 grid with numbers in such a way that each column, each row, and each of the nine 3 × 3 sub-grids that compose the grid all contain all of the numbers from 1 to 9 one time.
-//
-//    Implement an algorithm that will check whether the given grid of numbers represents a valid Sudoku puzzle according to the layout rules described above. Note that the puzzle represented by grid does not have to be solvable.
-//
-//    Example
-//
-//    For
-//
-//    grid =
-//    [['.', '.', '.', '1', '4', '.', '.', '2', '.'],
-//    ['.', '.', '6', '.', '.', '.', '.', '.', '.'],
-//    ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
-//    ['.', '.', '1', '.', '.', '.', '.', '.', '.'],
-//    ['.', '6', '7', '.', '.', '.', '.', '.', '9'],
-//    ['.', '.', '.', '.', '.', '.', '8', '1', '.'],
-//    ['.', '3', '.', '.', '.', '.', '.', '.', '6'],
-//    ['.', '.', '.', '.', '.', '7', '.', '.', '.'],
-//    ['.', '.', '.', '5', '.', '.', '.', '7', '.']]
-//    the output should be
-//    solution(grid) = true;
-//
-//    For
-//
-//    grid =
-//    [['.', '.', '.', '.', '2', '.', '.', '9', '.'],
-//    ['.', '.', '.', '.', '6', '.', '.', '.', '.'],
-//    ['7', '1', '.', '.', '7', '5', '.', '.', '.'],
-//    ['.', '7', '.', '.', '.', '.', '.', '.', '.'],
-//    ['.', '.', '.', '.', '8', '3', '.', '.', '.'],
-//    ['.', '.', '8', '.', '.', '7', '.', '6', '.'],
-//    ['.', '.', '.', '.', '.', '2', '.', '.', '.'],
-//    ['.', '1', '.', '2', '.', '.', '.', '.', '.'],
-//    ['.', '2', '.', '.', '3', '.', '.', '.', '.']]
-//    the output should be
-//    solution(grid) = false.
-//
-//    The given grid is not correct because there are two 1s in the second column. Each column, each row, and each 3 × 3 subgrid can only contain the numbers 1 through 9 one time.
-//
-//    Input/Output
-//
-//    [execution time limit] 3 seconds (kt)
-//
-//    [memory limit] 1 GB
-//
-//    [input] array.array.char grid
-//
-//    A 9 × 9 array of characters, in which each character is either a digit from '1' to '9' or a period '.'.
-//
-//    [output] boolean
-//
-//    Return true if grid represents a valid Sudoku puzzle, otherwise return false.
-
-    fun sudoku2(grid: List<List<Char>>): Boolean =
-        grid.all { it.filter { it != '.'}.noDuplicates() }.and(
-            grid.flatMap { it.withIndex() }.groupBy { it.index }.all {it.value.map { it.value }.filter {it != '.'}.noDuplicates()}.and(
-                grid.windowed(3,3).all { it.flatMap { it.windowed(3,3).withIndex() }.groupBy { it.index }.all { it.value.flatMap { it.value }.filter { it != '.' }.noDuplicates()} }
-            )
-        )
-
-    private fun <T> List<T>.noDuplicates() = this.distinct().size == this.size
-
 //    A cryptarithm is a mathematical puzzle for which the goal is to find the correspondence between letters and digits, such that the given arithmetic equation consisting of letters holds true when the letters are converted to digits.
 //
 //    You have an array of strings crypt, the cryptarithm, and an an array containing the mapping of letters and digits, solution. The array crypt will contain three non-empty strings that follow the structure: [word1, word2, word3], which should be interpreted as the word1 + word2 = word3 cryptarithm.
