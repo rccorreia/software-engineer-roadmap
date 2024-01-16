@@ -16,13 +16,21 @@ Accessing an element at a certain position is a very simple and efficient operat
 ### In Kotlin
 
 Using arrays directly is harder than using other kinds of collections. 
-They have a constant size, a limited number of operations, they do not implement any interface, and they do not override the toString, equals or hashCode methods. 
+They have a constant size, a limited number of operations, they do not implement any interface, and they **do not override the toString, equals or hashCode methods. 
 However, arrays are used by many other data structures under the hood. For instance, when you use mutableListOf on Kotlin/JVM, the result object is ArrayList, which keeps elements in an array. 
 This is why finding an element at an index in the default list is so efficient. 
 So, ArrayList has the advantages of arrays, but it offers much more. 
 Arrays have a constant size, so you cannot add more elements than their size allows. When you add an element to an ArrayList and its internal array is full already, it creates a bigger one and fills it with the previous values. 
-Usually, we restrict the usage of arrays to performance-critical parts of our applications
 
 Arrays are also used by the default Set and Map that we use in Kotlin. Both are based on a hash table algorithm that needs to use an array to work efficiently.
 
 Based mainly on Kotlin Essentials - Marcin Moskała
+
+## List
+
+### In Kotlin
+
+
+## Differences between Arrays and Lists
+
+Usually, we restrict the usage of arrays to performance-critical parts of our applications, because arrays are optimized for primitives.
