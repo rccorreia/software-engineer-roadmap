@@ -13,6 +13,28 @@ You also know that each element takes 4 positions (an array reserves constant sp
 This is an easy problem: our element starts at the position 1024 + 100 * 4 = 1424. 
 Accessing an element at a certain position is a very simple and efficient operation, which is a big advantage of using arrays.
 
+### Speed of Operations
+
+In number of steps
+
+#### Reading
+
+Just one step, because the computer can jump to any particular index in the array.
+
+#### Searching
+
+Depends on the algorithm that we are using and the characteristics of the content in the array (sorted or not).
+But for now let's think about linear search. And this search can be from 1 step (the value is in the first index), or N steps, where N is the size of the array (when the value is in the last index)
+
+#### Inserting
+
+Depends on where the new element is inserted. If it'll be inserted in the last position, then it is only one step (the array must have space, otherwise will be N + 1 steps).
+The worst case is when we want to insert in the first position, because we need to shift every element to the right and then insert. (N + 1 steps)
+
+#### Deleting
+
+Same as Inserting (the elements are shifted left instead of right)
+
 ### In Kotlin
 
 Using arrays directly is harder than using other kinds of collections. 
