@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 
-class ArrayUnitTest {
+class ArrayTest {
 
     @Nested
     inner class ArrayInitializationUnitTest {

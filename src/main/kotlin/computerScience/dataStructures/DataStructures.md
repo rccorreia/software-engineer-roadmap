@@ -48,14 +48,30 @@ Arrays are also used by the default Set and Map that we use in Kotlin. Both are 
 
 Based mainly on Kotlin Essentials - Marcin Moskała
 
-## List
+## List 
 
 ### In Kotlin
 
+Represents an ordered list of elements. It is built on top of Arrays, so it has all the features and extends adding some, like overriding toString, equals or hashCode methods, so you can compare Lists   
 
 ## Differences between Arrays and Lists
 
 Usually, we restrict the usage of arrays to performance-critical parts of our applications, because arrays are optimized for primitives.
+
+## Linked List
+
+Benefits against Arrays -> the elements doesn't need to be consecutive in memory, the is no fixed size and there can be different value types in the same linked list. 
+
+Disadvantage -> It is no iterable and all the consequences of it (only linear search, for example)
+
+### In Kotlin
+
+There is no implementation of a Linked List in native Kotlin.
+You can implement it like:
+
+//data class ListNode<T>(var value: T) {
+//    var next: ListNode<T>? = null;
+//}
 
 ## Set
 
