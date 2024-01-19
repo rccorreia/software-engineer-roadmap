@@ -62,4 +62,8 @@ Usually, we restrict the usage of arrays to performance-critical parts of our ap
 --
 
 A lot of data structures are based on Arrays.
-Set is one of those cases. The simplest Set based on Array is overriding its insert method, making it search the entire data structure and only inserting if the value is not found 
+Set is one of those cases. The simplest Set based on Array is overriding its insert method, making it search the entire data structure and only inserting if the value is not found
+
+
+## HashMap
+## Map
