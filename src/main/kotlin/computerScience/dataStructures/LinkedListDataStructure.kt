@@ -58,4 +58,90 @@ class LinkedListDataStructure {
 
         return if (l?.value == k) l.next else l
     }
+
+//    Question: isListPalindrome
+//    Note: Try to solve this task in O(n) time using O(1) additional space, where n is the number of elements in l, since this is what you'll be asked to do during an interview.
+//
+//    Given a singly linked list of integers, determine whether it's a palindrome.
+//
+//    Note: in examples below and tests preview linked lists are presented as arrays just for simplicity of visualization: in real data you will be given a head node l of the linked list
+//
+//    Example
+//
+//    For l = [0, 1, 0], the output should be
+//    solution(l) = true;
+//
+//    For l = [1, 2, 2, 3], the output should be
+//    solution(l) = false.
+//
+//    Input/Output
+//
+//    [execution time limit] 3 seconds (kt)
+//
+//    [memory limit] 1 GB
+//
+//    [input] linkedlist.integer l
+//
+//    A singly linked list of integers.
+//
+//    Guaranteed constraints:
+//    0 ≤ list size ≤ 5 · 105,
+//    -109 ≤ element value ≤ 109.
+//
+//    [output] boolean
+//
+//    Return true if l is a palindrome, otherwise return false.
+
+    // USING MORE SPACE:
+    // fun isListPalindrome(l: ListNode<Int>?): Boolean {
+    //     var copyL = l
+    //     val sequence: MutableList<Int> = mutableListOf()
+
+    //     while (copyL != null){
+    //         sequence.add(copyL.value)
+    //         copyL = copyL.next
+    //     }
+
+    //     return sequence == sequence.reversed()
+    // }
+
+    fun isListPalindrome(l: ListNode<Int>?): Boolean {
+        fun reverseNodesList(l: ListNode<Int>?): ListNode<Int>? {
+            if (l == null) return null
+            var head = l
+            var cur = head!!.next
+            while (true) {
+                if (cur == null) return head
+                val tail = cur.next
+                cur.next = head
+                head = cur
+                cur = tail
+            }
+        }
+
+        if (l?.next == null) return true
+
+        var len = 0
+        var head = l
+        var left = l
+
+        while(head != null) {
+            len += 1
+            head = head!!.next
+        }
+
+        head = l
+
+        for(i in 0 until len / 2) head = head!!.next
+        if (len % 2 == 1) head = head!!.next
+
+        var right = reverseNodesList(head)
+
+        for(i in 0 until len / 2) {
+            if(left!!.value != right!!.value) return false
+            left = left.next
+            right = right.next
+        }
+        return true
+    }
 }
