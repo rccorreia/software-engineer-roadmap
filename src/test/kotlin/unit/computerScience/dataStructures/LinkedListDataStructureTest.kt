@@ -87,4 +87,65 @@ class LinkedListDataStructureTest {
             Arguments.of(s1, true)
         )
     }
+
+    @ParameterizedTest(name = "for {0} and {1} the return is {2}")
+    @MethodSource("listNodeOfIntAndListNodeOfIntAndListNodeOfIntProvider")
+    fun `Given an huge number as Int List Node and another huge number as Int List Node, Then get the sum of huge numbers as Int List Node`(a: ListNode<Int>?, b: ListNode<Int>?, expected: ListNode<Int>? ) {
+        val linkedListDataStructure = LinkedListDataStructure()
+        val result = linkedListDataStructure.addTwoHugeNumbers(a, b)
+
+        Assertions.assertEquals(expected, result)
+    }
+
+    private fun listNodeOfIntAndListNodeOfIntAndListNodeOfIntProvider(): Stream<Arguments> {
+        val a1 = ListNode<Int>(9876)
+        val a2 = ListNode<Int>(5432)
+        val a3 = ListNode<Int>(1999)
+        a1.next = a2
+        a2.next = a3
+
+        val b1 = ListNode<Int>(1)
+        val b2 = ListNode<Int>(8001)
+        b1.next = b2
+
+        val r1 = ListNode<Int>(9876)
+        val r2 = ListNode<Int>(5434)
+        val r3 = ListNode<Int>(0)
+        r1.next = r2
+        r2.next = r3
+
+        val z = ListNode<Int>(0)
+
+        val c = ListNode<Int>(1)
+
+        val d1 = ListNode<Int>(9998)
+        val d2 = ListNode<Int>(9999)
+        val d3 = ListNode<Int>(9999)
+        val d4 = ListNode<Int>(9999)
+        val d5 = ListNode<Int>(9999)
+        val d6 = ListNode<Int>(9999)
+        d1.next = d2
+        d2.next = d3
+        d3.next = d4
+        d4.next = d5
+        d5.next = d6
+
+        val rr1 = ListNode<Int>(9999)
+        val rr2 = ListNode<Int>(0)
+        val rr3 = ListNode<Int>(0)
+        val rr4 = ListNode<Int>(0)
+        val rr5 = ListNode<Int>(0)
+        val rr6 = ListNode<Int>(0)
+        rr1.next = rr2
+        rr2.next = rr3
+        rr3.next = rr4
+        rr4.next = rr5
+        rr5.next = rr6
+
+        return Stream.of(
+            Arguments.of(a1, b1, r1),
+            Arguments.of(z, z, z),
+            Arguments.of(c, d1, rr1)
+        )
+    }
 }

@@ -1,5 +1,7 @@
 package com.github.rccorreia.computerScience.dataStructures
 
+import java.math.BigInteger
+
 data class ListNode<T>(var value: T) {
     var next: ListNode<T>? = null;
 }
@@ -143,5 +145,86 @@ class LinkedListDataStructure {
             right = right.next
         }
         return true
+    }
+
+    // Question: addTwoHugeNumbers
+//    You're given 2 huge integers represented by linked lists. Each linked list element is a number from 0 to 9999 that represents a number with exactly 4 digits. The represented number might have leading zeros. Your task is to add up these huge integers and return the result in the same format.
+//
+//    Example
+//
+//    For a = [9876, 5432, 1999] and b = [1, 8001], the output should be
+//    solution(a, b) = [9876, 5434, 0].
+//
+//    Explanation: 987654321999 + 18001 = 987654340000.
+//
+//    For a = [123, 4, 5] and b = [100, 100, 100], the output should be
+//    solution(a, b) = [223, 104, 105].
+//
+//    Explanation: 12300040005 + 10001000100 = 22301040105.
+//
+//    Input/Output
+//
+//    [execution time limit] 3 seconds (kt)
+//
+//    [memory limit] 1 GB
+//
+//    [input] linkedlist.integer a
+//
+//    The first number, without its leading zeros.
+//
+//    Guaranteed constraints:
+//    0 ≤ a size ≤ 104,
+//    0 ≤ element value ≤ 9999.
+//
+//    [input] linkedlist.integer b
+//
+//    The second number, without its leading zeros.
+//
+//    Guaranteed constraints:
+//    0 ≤ b size ≤ 104,
+//    0 ≤ element value ≤ 9999.
+//
+//    [output] linkedlist.integer
+//
+//    The result of adding a and b together, returned without leading zeros in the same format.
+
+    fun addTwoHugeNumbers(a: ListNode<Int>?, b: ListNode<Int>?): ListNode<Int>? {
+        val numbersListA: MutableList<Int> = mutableListOf()
+        val numbersListB: MutableList<Int> = mutableListOf()
+        var copyA = a
+        var copyB = b
+
+        while (copyA != null){
+            numbersListA.add(copyA.value)
+            copyA = copyA.next
+        }
+
+        while (copyB != null){
+            numbersListB.add(copyB.value)
+            copyB = copyB.next
+        }
+
+        var firstBigNumber: BigInteger = numbersListA.map { it.toString().padStart(4, '0') }.joinToString("").toBigInteger()
+        var secondBigNumber: BigInteger = numbersListB.map { it.toString().padStart(4, '0') }.joinToString("").toBigInteger()
+        var result: String = (firstBigNumber + secondBigNumber).toString()
+
+        if (result.length % 4 != 0) result = result.padStart(result.length + (4 - result.length % 4), '0')
+
+        val resultSliced: MutableList<Int> = mutableListOf()
+
+        for (i in 0 until result.length step 4) {
+            resultSliced.add(result.slice(i..i+3).toInt())
+        }
+
+        var r: ListNode<Int>? = ListNode(0)
+        val copyR = r
+
+        for (resultNumber in resultSliced){
+            val nextR = ListNode(resultNumber)
+            r!!.next = nextR
+            r = r.next
+        }
+
+        return copyR!!.next
     }
 }
