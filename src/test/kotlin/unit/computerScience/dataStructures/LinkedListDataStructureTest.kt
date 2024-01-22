@@ -148,4 +148,74 @@ class LinkedListDataStructureTest {
             Arguments.of(c, d1, rr1)
         )
     }
+
+    @ParameterizedTest(name = "for {0} and {1} the return is {2}")
+    @MethodSource("listNodeOfIntAndListNodeOfIntAndListNodeOfIntForMergeTwoLinkedListsProvider")
+    fun `Given an Int List Node and another Int List Node, Then get the merged Int List Node`(l1: ListNode<Int>?, l2: ListNode<Int>?, expected: ListNode<Int>? ) {
+        val linkedListDataStructure = LinkedListDataStructure()
+        val result = linkedListDataStructure.mergeTwoLinkedLists(l1, l2)
+
+        Assertions.assertEquals(expected, result)
+    }
+
+    private fun listNodeOfIntAndListNodeOfIntAndListNodeOfIntForMergeTwoLinkedListsProvider(): Stream<Arguments> {
+        val l101 = ListNode<Int>(1)
+        val l102 = ListNode<Int>(2)
+        val l103 = ListNode<Int>(3)
+        l101.next = l102
+        l102.next = l103
+
+        val l201 = ListNode<Int>(4)
+        val l202 = ListNode<Int>(5)
+        val l203 = ListNode<Int>(6)
+        l201.next = l202
+        l202.next = l203
+
+        val r1201 = ListNode<Int>(1)
+        val r1202 = ListNode<Int>(2)
+        val r1203 = ListNode<Int>(3)
+        val r1204 = ListNode<Int>(4)
+        val r1205 = ListNode<Int>(5)
+        val r1206 = ListNode<Int>(6)
+        r1201.next = r1202
+        r1202.next = r1203
+        r1203.next = r1204
+        r1204.next = r1205
+        r1205.next = r1206
+
+
+
+        val l301 = ListNode<Int>(5)
+        val l302 = ListNode<Int>(10)
+        val l303 = ListNode<Int>(15)
+        val l304 = ListNode<Int>(40)
+        l301.next = l302
+        l302.next = l303
+        l303.next = l304
+
+        val l401 = ListNode<Int>(2)
+        val l402 = ListNode<Int>(3)
+        val l403 = ListNode<Int>(20)
+        l401.next = l402
+        l402.next = l403
+
+        val r3401 = ListNode<Int>(2)
+        val r3402 = ListNode<Int>(3)
+        val r3403 = ListNode<Int>(5)
+        val r3404 = ListNode<Int>(10)
+        val r3405 = ListNode<Int>(15)
+        val r3406 = ListNode<Int>(20)
+        val r3407 = ListNode<Int>(40)
+        r3401.next = r3402
+        r3402.next = r3403
+        r3403.next = r3404
+        r3404.next = r3405
+        r3405.next = r3406
+        r3406.next = r3407
+
+        return Stream.of(
+            Arguments.of(l101, l201, r1201),
+            Arguments.of(l301, l401, r3401)
+        )
+    }
 }

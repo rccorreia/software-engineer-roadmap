@@ -204,8 +204,8 @@ class LinkedListDataStructure {
             copyB = copyB.next
         }
 
-        var firstBigNumber: BigInteger = numbersListA.map { it.toString().padStart(4, '0') }.joinToString("").toBigInteger()
-        var secondBigNumber: BigInteger = numbersListB.map { it.toString().padStart(4, '0') }.joinToString("").toBigInteger()
+        val firstBigNumber: BigInteger = numbersListA.joinToString("") { it.toString().padStart(4, '0') }.toBigInteger()
+        val secondBigNumber: BigInteger = numbersListB.joinToString("") { it.toString().padStart(4, '0') }.toBigInteger()
         var result: String = (firstBigNumber + secondBigNumber).toString()
 
         if (result.length % 4 != 0) result = result.padStart(result.length + (4 - result.length % 4), '0')
@@ -226,5 +226,66 @@ class LinkedListDataStructure {
         }
 
         return copyR!!.next
+    }
+
+    // Question mergeTwoLinkedLists
+//    Note: Your solution should have O(l1.length + l2.length) time complexity, since this is what you will be asked to accomplish in an interview.
+//
+//    Given two singly linked lists sorted in non-decreasing order, your task is to merge them. In other words, return a singly linked list, also sorted in non-decreasing order, that contains the elements from both original lists.
+//
+//    Example
+//
+//    For l1 = [1, 2, 3] and l2 = [4, 5, 6], the output should be
+//    solution(l1, l2) = [1, 2, 3, 4, 5, 6];
+//    For l1 = [1, 1, 2, 4] and l2 = [0, 3, 5], the output should be
+//    solution(l1, l2) = [0, 1, 1, 2, 3, 4, 5].
+//    Input/Output
+//
+//    [execution time limit] 3 seconds (kt)
+//
+//    [memory limit] 1 GB
+//
+//    [input] linkedlist.integer l1
+//
+//    A singly linked list of integers.
+//
+//    Guaranteed constraints:
+//    0 ≤ list size ≤ 104,
+//    -109 ≤ element value ≤ 109.
+//
+//    [input] linkedlist.integer l2
+//
+//    A singly linked list of integers.
+//
+//    Guaranteed constraints:
+//    0 ≤ list size ≤ 104,
+//    -109 ≤ element value ≤ 109.
+//
+//    [output] linkedlist.integer
+//
+//    A list that contains elements from both l1 and l2, sorted in non-decreasing order.
+
+    fun mergeTwoLinkedLists(l1: ListNode<Int>?, l2: ListNode<Int>?): ListNode<Int>? {
+        var copyL1 = l1
+        var copyL2 = l2
+        var r: ListNode<Int>? = ListNode(0)
+        val result = r
+
+        while (copyL1 != null || copyL2 != null){
+            var current: Int
+
+            if ((copyL1?.value ?: Int.MAX_VALUE) < (copyL2?.value ?: Int.MAX_VALUE)){
+                current = copyL1!!.value
+                copyL1 = copyL1.next
+            } else {
+                current = copyL2!!.value
+                copyL2 = copyL2.next
+            }
+
+            r!!.next = ListNode(current)
+            r = r.next
+        }
+
+        return result!!.next
     }
 }
