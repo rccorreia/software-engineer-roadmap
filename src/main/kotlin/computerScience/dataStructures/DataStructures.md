@@ -60,9 +60,33 @@ Usually, we restrict the usage of arrays to performance-critical parts of our ap
 
 ## Linked List
 
-Benefits against Arrays -> the elements doesn't need to be consecutive in memory, the is no fixed size and there can be different value types in the same linked list. 
+A sequence of elements (nodes) connected by pointers (one node points to the next node). Each node contains two components: data (it's value) and a reference to the next node in the sequence.
 
-Disadvantage -> It is no iterable and all the consequences of it (only linear search, for example)
+Benefits against Arrays -> the elements doesn't need to be consecutive in memory, the is no fixed size and there can be different value types in the same linked list. The insertion and deletion are more efficient.
+
+Disadvantage -> It is not iterable and all the consequences of it (only linear search, for example). A value in the middle cannot be accessed directly. It requires more memory compared to arrays and its implementation is more complex. 
+
+### Speed of Operations
+
+In number of steps
+
+#### Reading
+
+Worst case read of O(N) because to read the last node we have to start from the first node (the only one we have access initially), and follow the chain of nodes until we reach the final node.
+
+#### Searching
+
+O(N). Similar to reading, to search for a value we have to start in the first node and follow the links of each node to next one.
+
+#### Inserting
+
+In the beginning of the list it only takes one step to insert (We just create the node, links it to the head of the list and then update the head to be the new node.)
+
+If it is not in the beginning, the worst case scenario is inserting on tail (last node), because we have to read every node until we hit the end to insert the new node
+
+#### Deleting
+
+Same as Inserting.
 
 ### In Kotlin
 

@@ -288,4 +288,7 @@ class LinkedListDataStructure {
 
         return result!!.next
     }
+
+//    TODO: reverseNodesInKGroups
+//    TODO: rearrangeLastN
 }
