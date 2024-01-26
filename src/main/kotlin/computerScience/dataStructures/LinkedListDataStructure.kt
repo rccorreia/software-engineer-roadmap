@@ -29,6 +29,18 @@ class LinkedListDataStructure {
         return prevNode
     }
 
+
+//    Question: Remove a Node from the linked list without having access to its previous node in the chain
+
+    fun removeNodeWithoutPrevious(l: ListNode<Int>?): ListNode<Int>? {
+        if (l!!.next == null) return null
+
+        l.value = l.next!!.value
+        l.next = l.next!!.next
+
+        return l
+    }
+
 //    Question: removeKFromList
 //    Note: Try to solve this task in O(n) time using O(1) additional space, where n is the number of elements in the list, since this is what you'll be asked to do during an interview.
 //

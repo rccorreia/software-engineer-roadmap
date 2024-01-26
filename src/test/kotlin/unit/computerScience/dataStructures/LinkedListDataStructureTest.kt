@@ -3,6 +3,7 @@ package unit.computerScience.dataStructures
 import com.github.rccorreia.computerScience.dataStructures.LinkedListDataStructure
 import com.github.rccorreia.computerScience.dataStructures.ListNode
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -57,6 +58,26 @@ class LinkedListDataStructureTest {
             Arguments.of(a1, a1),
             Arguments.of(b1, c1)
         )
+    }
+
+    @Test
+    fun `Given an List Node and a node to remove, Then get the list with node removed`() {
+        val l1 = ListNode<Int>(1)
+        val l2 = ListNode<Int>(2)
+        val l3 = ListNode<Int>(3)
+
+        l1.next = l2
+        l2.next = l3
+
+        val r1 = ListNode<Int>(1)
+        val r2 = ListNode<Int>(3)
+
+        r1.next = r2
+
+        val linkedListDataStructure = LinkedListDataStructure()
+        linkedListDataStructure.removeNodeWithoutPrevious(l2)
+
+        Assertions.assertEquals(r1, l1)
     }
 
     @ParameterizedTest(name = "for {0} and {1} the return is {2}")
