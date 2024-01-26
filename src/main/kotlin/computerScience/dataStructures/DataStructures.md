@@ -97,6 +97,10 @@ You can implement it like:
 //    var next: ListNode<T>? = null;
 //}
 
+## Hash Table
+
+
+
 ## Set
 
 --
@@ -104,6 +108,4 @@ You can implement it like:
 A lot of data structures are based on Arrays.
 Set is one of those cases. The simplest Set based on Array is overriding its insert method, making it search the entire data structure and only inserting if the value is not found
 
-
-## HashMap
 ## Map

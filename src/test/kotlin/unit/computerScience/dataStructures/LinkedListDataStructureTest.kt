@@ -11,6 +11,54 @@ import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LinkedListDataStructureTest {
+    @ParameterizedTest(name = "for {0} return {1}")
+    @MethodSource("listNodeOfIntAndListNodeOfIntProvider")
+    fun `Given an List Node, Then get the reversed list`(l: ListNode<Int>?, expected: ListNode<Int>? ) {
+        val linkedListDataStructure = LinkedListDataStructure()
+        val result = linkedListDataStructure.revertLinkedList(l)
+
+        Assertions.assertEquals(expected, result)
+    }
+
+    private fun listNodeOfIntAndListNodeOfIntProvider(): Stream<Arguments> {
+        val l1 = ListNode<Int>(1)
+        val l2 = ListNode<Int>(2)
+        val l3 = ListNode<Int>(3)
+        val l4 = ListNode<Int>(4)
+        val l5 = ListNode<Int>(5)
+        l1.next = l2
+        l2.next = l3
+        l3.next = l4
+        l4.next = l5
+
+        val r1 = ListNode<Int>(5)
+        val r2 = ListNode<Int>(4)
+        val r3 = ListNode<Int>(3)
+        val r4 = ListNode<Int>(2)
+        val r5 = ListNode<Int>(1)
+        r1.next = r2
+        r2.next = r3
+        r3.next = r4
+        r4.next = r5
+
+        val a1 = ListNode<Int>(7)
+
+        val b1 = ListNode<Int>(0)
+        val b2 = ListNode<Int>(10)
+
+        val c1 = ListNode<Int>(10)
+        val c2 = ListNode<Int>(0)
+
+        b1.next = b2
+        c1.next = c2
+
+        return Stream.of(
+            Arguments.of(l1, r1),
+            Arguments.of(a1, a1),
+            Arguments.of(b1, c1)
+        )
+    }
+
     @ParameterizedTest(name = "for {0} and {1} the return is {2}")
     @MethodSource("listNodeOfIntAndIntAndListNodeOfIntProvider")
     fun `Given an List Node and an Int k, Then get the list with all numbers except k`(l: ListNode<Int>?, k: Int, expected: ListNode<Int>? ) {

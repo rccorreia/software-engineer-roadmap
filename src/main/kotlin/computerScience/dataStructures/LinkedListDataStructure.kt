@@ -8,6 +8,27 @@ data class ListNode<T>(var value: T) {
 
 class LinkedListDataStructure {
 
+//    Question: Create a function that reverts the linked list.
+
+    fun revertLinkedList(l: ListNode<Int>?): ListNode<Int>? {
+        if (l?.next == null) return l
+
+        var prevNode: ListNode<Int>? = null
+        var currentNode: ListNode<Int>? = l
+        var nextNode: ListNode<Int>? = null
+
+        while (currentNode != null){
+            nextNode = currentNode.next
+
+            currentNode.next = prevNode
+
+            prevNode = currentNode
+            currentNode = nextNode
+        }
+
+        return prevNode
+    }
+
 //    Question: removeKFromList
 //    Note: Try to solve this task in O(n) time using O(1) additional space, where n is the number of elements in the list, since this is what you'll be asked to do during an interview.
 //
